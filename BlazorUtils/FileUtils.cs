@@ -6,8 +6,8 @@ namespace BlazorUtils
 {
     public static class FileUtil
     {
-        public static Task SaveAs(string filename, byte[] data)
-            => JSRuntime.Current.InvokeAsync<object>(
+        public static Task SaveAs(this IJSRuntime js, string filename, byte[] data)
+            => js.InvokeAsync<object>(
                 "saveAsFile",
                 filename,
                 Convert.ToBase64String(data));

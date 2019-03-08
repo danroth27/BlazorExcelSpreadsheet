@@ -1,5 +1,6 @@
 ﻿@page "/fetchdata"
 @inject HttpClient Http
+@inject IJSRuntime JS
 
 <h1>Weather forecast</h1>
 
@@ -78,7 +79,7 @@ else
             header.Style.Font.Color.SetColor(Color.White);
             header.Style.Fill.BackgroundColor.SetColor(Color.DarkBlue);
 
-            FileUtil.SaveAs("forecasts.xlsx", package.GetAsByteArray());
+            JS.SaveAs("forecasts.xlsx", package.GetAsByteArray());
         }
     }
 
