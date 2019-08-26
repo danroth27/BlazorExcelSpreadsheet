@@ -1,4 +1,5 @@
 ﻿@page "/fetchdata"
+@using BlazorExcelSpreadsheet.Shared
 @inject HttpClient Http
 @inject IJSRuntime JS
 
@@ -34,15 +35,15 @@ else
         </tbody>
     </table>
 
-    <button class="btn btn-primary" onclick="@DownloadFile">Download</button>
+    <button class="btn btn-primary" @onclick="DownloadFile">Download</button>
 }
 
-@functions {
+@code {
     WeatherForecast[] forecasts;
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("WeatherForecast");
     }
 
     void DownloadFile()
@@ -79,15 +80,7 @@ else
             header.Style.Font.Color.SetColor(Color.White);
             header.Style.Fill.BackgroundColor.SetColor(Color.DarkBlue);
 
-            JS.SaveAs("forecasts.xlsx", package.GetAsByteArray());
+            FileUtil.SaveAs(JS, "forecasts.xlsx", package.GetAsByteArray());
         }
-    }
-
-    class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-        public int TemperatureC { get; set; }
-        public int TemperatureF { get; set; }
-        public string Summary { get; set; }
     }
 }

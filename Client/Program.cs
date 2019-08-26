@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Blazor.Hosting;
 
-namespace BlazorExcelSpreadsheet
+namespace BlazorExcelSpreadsheet.Client
 {
     public class Program
     {

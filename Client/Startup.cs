@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BlazorExcelSpreadsheet
+namespace BlazorExcelSpreadsheet.Client
 {
     public class Startup
     {
